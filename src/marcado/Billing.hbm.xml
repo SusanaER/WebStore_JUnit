@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.Billing" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="billing">
+        <id name="billingId" type="java.lang.Integer">
+            <column name="Billing_ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="clases.PurchaseOrders" embed-xml="true" fetch="select" insert="true" name="purchaseOrders" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Purchase_Order_ID" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="amount" optimistic-lock="true" type="double" unique="false">
+            <column name="Amount" not-null="true" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="date" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="Date" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

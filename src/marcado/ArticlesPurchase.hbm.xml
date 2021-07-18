@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.ArticlesPurchase" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="articles_purchase">
+        <id name="articlesPurchaseId" type="java.lang.Integer">
+            <column name="Articles_Purchase_ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="clases.Articles" embed-xml="true" fetch="select" insert="true" name="articles" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Article_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="clases.PurchaseOrders" embed-xml="true" fetch="select" insert="true" name="purchaseOrders" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Purchase_Order_ID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

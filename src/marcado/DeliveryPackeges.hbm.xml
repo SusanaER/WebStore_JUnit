@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.DeliveryPackeges" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="delivery_packeges">
+        <id name="deliveryPackegesId" type="java.lang.Integer">
+            <column name="Delivery_Packeges_ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="clases.DeliveryCompany" embed-xml="true" fetch="select" insert="true" name="deliveryCompany" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Delivery_Company_ID" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="deliveryDate" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="Delivery_Date" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="packegeNumber" optimistic-lock="true" type="int" unique="false">
+            <column name="Packege_Number" not-null="true" unique="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="purchaseOrderses" optimistic-lock="true" sort="unsorted" table="purchase_orders">
+            <key on-delete="noaction">
+                <column name="Delivery_Packeges_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.PurchaseOrders" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

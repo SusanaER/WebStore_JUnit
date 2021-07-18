@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.DeliveryAddress" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="delivery_address">
+        <id name="delAddId" type="java.lang.Integer">
+            <column name="Del_Add_ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="clases.City" embed-xml="true" fetch="select" insert="true" name="city" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="City_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="clases.Country" embed-xml="true" fetch="select" insert="true" name="country" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Country_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="clases.State" embed-xml="true" fetch="select" insert="true" name="state" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="State_ID" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="street" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="Street" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="number" optimistic-lock="true" type="int" unique="false">
+            <column name="Number" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="clientDelAdds" optimistic-lock="true" sort="unsorted" table="client_del_add">
+            <key on-delete="noaction">
+                <column name="Del_Add_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.ClientDelAdd" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

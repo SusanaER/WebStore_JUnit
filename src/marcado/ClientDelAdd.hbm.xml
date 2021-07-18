@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.ClientDelAdd" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="client_del_add">
+        <id name="clientDelAddId" type="java.lang.Integer">
+            <column name="Client_Del_Add_ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="clases.Clients" embed-xml="true" fetch="select" insert="true" name="clients" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Client_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="clases.DeliveryAddress" embed-xml="true" fetch="select" insert="true" name="deliveryAddress" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Del_Add_ID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

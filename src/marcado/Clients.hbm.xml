@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.Clients" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="clients">
+        <id name="clientId" type="java.lang.Integer">
+            <column name="Client_ID"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="name" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="Name" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="lastName" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="Last_Name" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="username" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="Username" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="password" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="Password" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="email" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="Email" not-null="true" unique="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="purchaseOrderses" optimistic-lock="true" sort="unsorted" table="purchase_orders">
+            <key on-delete="noaction">
+                <column name="Client_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.PurchaseOrders" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="clientDelAdds" optimistic-lock="true" sort="unsorted" table="client_del_add">
+            <key on-delete="noaction">
+                <column name="Client_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.ClientDelAdd" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="clientCreditCards" optimistic-lock="true" sort="unsorted" table="client_credit_card">
+            <key on-delete="noaction">
+                <column name="Client_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.ClientCreditCard" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

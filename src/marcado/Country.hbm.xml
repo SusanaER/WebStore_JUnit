@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.Country" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="country">
+        <id name="countryId" type="java.lang.Integer">
+            <column name="Country_ID"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="name" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="Name" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="deliveryAddresses" optimistic-lock="true" sort="unsorted" table="delivery_address">
+            <key on-delete="noaction">
+                <column name="Country_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.DeliveryAddress" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="states" optimistic-lock="true" sort="unsorted" table="state">
+            <key on-delete="noaction">
+                <column name="Country_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.State" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

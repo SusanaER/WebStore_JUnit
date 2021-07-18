@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.Articles" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="articles">
+        <id name="articlesId" type="java.lang.Integer">
+            <column name="Articles_ID"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="name" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="Name" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="description" optimistic-lock="true" type="string" unique="false">
+            <column length="500" name="Description"/>
+        </property>
+        <property generated="never" lazy="false" name="price" optimistic-lock="true" type="double" unique="false">
+            <column name="Price" not-null="true" precision="22" scale="0"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="articlesPurchases" optimistic-lock="true" sort="unsorted" table="articles_purchase">
+            <key on-delete="noaction">
+                <column name="Article_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.ArticlesPurchase" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

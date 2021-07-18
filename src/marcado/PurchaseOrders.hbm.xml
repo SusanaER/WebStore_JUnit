@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.PurchaseOrders" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="purchase_orders">
+        <id name="purchaseOrderId" type="java.lang.Integer">
+            <column name="Purchase_Order_ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="clases.Clients" embed-xml="true" fetch="select" insert="true" name="clients" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Client_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="clases.DeliveryPackeges" embed-xml="true" fetch="select" insert="true" name="deliveryPackeges" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Delivery_Packeges_ID" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="date" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="Date" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="articlesPurchases" optimistic-lock="true" sort="unsorted" table="articles_purchase">
+            <key on-delete="noaction">
+                <column name="Purchase_Order_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.ArticlesPurchase" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="billings" optimistic-lock="true" sort="unsorted" table="billing">
+            <key on-delete="noaction">
+                <column name="Purchase_Order_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.Billing" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

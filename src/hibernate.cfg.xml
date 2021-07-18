@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/db_web_store</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping resource="marcado/DeliveryCompany.hbm.xml"/>
+        <mapping resource="marcado/TypeCc.hbm.xml"/>
+        <mapping resource="marcado/Country.hbm.xml"/>
+        <mapping resource="marcado/State.hbm.xml"/>
+        <mapping resource="marcado/Billing.hbm.xml"/>
+        <mapping resource="marcado/Clients.hbm.xml"/>
+        <mapping resource="marcado/DeliveryPackeges.hbm.xml"/>
+        <mapping resource="marcado/City.hbm.xml"/>
+        <mapping resource="marcado/ArticlesPurchase.hbm.xml"/>
+        <mapping resource="marcado/ClientDelAdd.hbm.xml"/>
+        <mapping resource="marcado/DeliveryAddress.hbm.xml"/>
+        <mapping resource="marcado/CreditCards.hbm.xml"/>
+        <mapping resource="marcado/PurchaseOrders.hbm.xml"/>
+        <mapping resource="marcado/ClientCreditCard.hbm.xml"/>
+        <mapping resource="marcado/Articles.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

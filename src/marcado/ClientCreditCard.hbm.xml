@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.ClientCreditCard" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="client_credit_card">
+        <id name="clientCreditCardId" type="java.lang.Integer">
+            <column name="Client_Credit_Card_ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="clases.Clients" embed-xml="true" fetch="select" insert="true" name="clients" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Client_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="clases.CreditCards" embed-xml="true" fetch="select" insert="true" name="creditCards" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Credit_Card_ID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

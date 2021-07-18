@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_web_store" dynamic-insert="false" dynamic-update="false" mutable="true" name="clases.CreditCards" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="credit_cards">
+        <id name="creditCardId" type="java.lang.Integer">
+            <column name="Credit_Card_ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="clases.TypeCc" embed-xml="true" fetch="select" insert="true" name="typeCc" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Type_CC_ID" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="number" optimistic-lock="true" type="int" unique="false">
+            <column name="Number" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="cardholder" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="Cardholder" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="clientCreditCards" optimistic-lock="true" sort="unsorted" table="client_credit_card">
+            <key on-delete="noaction">
+                <column name="Credit_Card_ID" not-null="true"/>
+            </key>
+            <one-to-many class="clases.ClientCreditCard" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>
