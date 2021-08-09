@@ -18,8 +18,9 @@ public class Articles implements java.io.Serializable {
 		this.articlesId = ID;
 	}
 
-	public Articles(String name, double price) {
+	public Articles(String name, String description, double price) {
 		this.name = name;
+		this.description = description;
 		this.price = price;
 	}
 
